@@ -1,40 +1,43 @@
-@page "/bind-theory"
+@page "/character-sheet"
 @using System.Text.Json
 
 <p>
     <label>
         Normal Blazor binding: 
-        <input @bind="InputValue" />
+        <input @bind="_playerSheet.Text" />
     </label>
 </p>
 
 <p>
-    <button @onclick="@SerializeDeserializeMethod">Serialize & Deserialize</button>
+<button @onclick="@ExportToJson">Serialize</button>
+<InputFile OnChange="ImportFromJson">[Import]</InputFile>
 </p>
-
-<p>
-    <code>Input Value</code>: @InputValue
-</p>
-
-<button @onclick="@SerializeDeserializeMethod">Serialize & Deserialize</button>
 
 @code {
     private string? InputValue { get; set; }
 
-    public class User
+    private MMSheet _playerSheet = new();
+
+    /**
+     * Exports the character sheet to a .json file, for later loading with ImportFromJson().
+     */
+    private async Task ExportToJson()
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
+        await BlazorDownloadFileService.DownloadFileFromText($"{_playerSheet.Name}-{DateTime.Now:MM-dd-yy_hh-mm-ss}.json", JsonSerializer.Serialize(_playerSheet, typeof(MMSheet), Options), "text/json");
     }
 
-    User user = new User() {ID = 1, Name = "Mark", Address = "Code Jail"};
-
-    void SerializeDeserializeMethod()
+    /**
+     * Imports a character sheet from an exported .json file created by ExportToJson().
+     */
+    private async Task ImportFromJson(InputFileChangeEventArgs args)
     {
-        //for serialization
-        string serializedString = System.Text.Json.JsonSerializer.Serialize(User1);
-        //for deserialization
-        User userCopy = System.Text.Json.JsonSerializer.Deserialize<User>(serializedString);
+        Stream stream = args.File.OpenReadStream();
+        StreamReader reader = new(stream);
+        try {
+            _playerSheet = JsonSerializer.Deserialize<MMSheet>(await reader.ReadToEndAsync(), Options);
+        }
+        catch (JsonException e) {
+            _importError = e.Message;
+        }
     }
 }
