@@ -8,17 +8,24 @@
 </p>
 
 <p>
-    <label>
-        Demonstration of equivalent HTML binding: 
-        <input value="@InputValue"
-            @onchange="@((ChangeEventArgs __e) => InputValue = __e?.Value?.ToString())" />
-    </label>
+    <button @onclick="@SerializeDeserializeMethod">Serialize & Deserialize</button>
 </p>
 
 <p>
-    <code>InputValue</code>: @InputValue
+    <code>Input Value</code>: @InputValue
 </p>
 
+<p>
+    <code>Serialized String</code>: @serializedString
+</p>
 @code {
     private string? InputValue { get; set; }
+
+    void SerializeDeserializeMethod()
+    {
+        //for serialization
+        string serializedString = System.Text.Json.JsonSerializer.Serialize(InputValue);
+        //for deserialization
+        //User userCopy = System.Text.Json.JsonSerializer.Deserialize<User>(serializedString);
+    }
 }
