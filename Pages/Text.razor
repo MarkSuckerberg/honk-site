@@ -16,14 +16,14 @@
 @code {
     private string? InputValue { get; set; }
 
-    private _playerSheet = new();
+    private gameSheet _playerSheet = new();
 
     /**
      * Exports the character sheet to a .json file, for later loading with ImportFromJson().
      */
     private async Task ExportToJson()
     {
-        await BlazorDownloadFileService.DownloadFileFromText($"{_playerSheet.Name}-{DateTime.Now:MM-dd-yy_hh-mm-ss}.json", JsonSerializer.Serialize(_playerSheet, typeof(MMSheet), Options), "text/json");
+        await BlazorDownloadFileService.DownloadFileFromText($"{_playerSheet.Name}-{DateTime.Now:MM-dd-yy_hh-mm-ss}.json", JsonSerializer.Serialize(_playerSheet, typeof(gameSheet, Options), "text/json");
     }
 
     /**
@@ -34,7 +34,7 @@
         Stream stream = args.File.OpenReadStream();
         StreamReader reader = new(stream);
         try {
-            _playerSheet = JsonSerializer.Deserialize<MMSheet>(await reader.ReadToEndAsync(), Options);
+            _playerSheet = JsonSerializer.Deserialize<gameSheet>(await reader.ReadToEndAsync(), Options);
         }
         catch (JsonException e) {
             _importError = e.Message;
