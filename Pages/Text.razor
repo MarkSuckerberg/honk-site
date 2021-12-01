@@ -19,14 +19,26 @@
 <p>
     <code>Serialized String</code>: @serializedString
 </p>
+
+<button @onclick="@SerializeDeserializeMethod">Serialize & Deserialize</button>
+
 @code {
     private string? InputValue { get; set; }
+
+    public class User
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+    }
+
+    User user = new User() {ID = 1, Name = "Mark", Address = "Code Jail"};
 
     void SerializeDeserializeMethod()
     {
         //for serialization
-        string serializedString = System.Text.Json.JsonSerializer.Serialize(InputValue);
+        string serializedString = System.Text.Json.JsonSerializer.Serialize(User1);
         //for deserialization
-        //User userCopy = System.Text.Json.JsonSerializer.Deserialize<User>(serializedString);
+        User userCopy = System.Text.Json.JsonSerializer.Deserialize<User>(serializedString);
     }
 }
