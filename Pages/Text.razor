@@ -23,7 +23,7 @@
      */
     private async Task ExportToJson()
     {
-        await BlazorDownloadFileService.DownloadFileFromText($"{_playerSheet.Name}-{DateTime.Now:MM-dd-yy_hh-mm-ss}.json", JsonSerializer.Serialize(_playerSheet, typeof(gameSheet, Options), "text/json");
+        await BlazorDownloadFileService.DownloadFileFromText($"{_playerSheet.Name}-{DateTime.Now:MM-dd-yy_hh-mm-ss}.json", JsonSerializer.Serialize(_playerSheet), typeof(gameSheet, Options), "text/json");
     }
 
     /**
