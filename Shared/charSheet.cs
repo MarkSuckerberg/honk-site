@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-namespace Shared
+namespace honk-site.Shared
 {
     public class charSheet
     {
