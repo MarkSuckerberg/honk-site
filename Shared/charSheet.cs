@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace supercool
+namespace honk_site.Shared
 {
     public class charSheet
     {
