@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace_charSheet
+namespace charSheet.
 {
     public class charSheet
     {
