@@ -1,6 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+
+<PropertyGroup>
+  <ImplicitUsings>disable</ImplicitUsings>
+</PropertyGroup>
+
 namespace honk-site.Shared
 {
     public class charSheet
