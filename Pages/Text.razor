@@ -10,9 +10,14 @@
 
 <h2>Save/Load</h2>
 
-<input @bind="_saveLoadJson" />
-<button @onclick="ExportToJson">[Export]</button>
-<button @onclick="ImportFromJson">[Import]</button>
+<p>
+    <label>
+    <input @bind="_saveLoadJson" />
+    <button @onclick="ExportToJson">[Export]</button>
+    <button @onclick="ImportFromJson">[Import]</button>
+    @_importError
+    </label>
+</p>
 
 @_importError
 
