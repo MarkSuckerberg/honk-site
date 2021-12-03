@@ -14,11 +14,13 @@
 <button @onclick="ExportToJson">[Export]</button>
 <button @onclick="ImportFromJson">[Import]</button>
 
-}
+@_importError
 
 @code {
     private charSheet _playerSheet = new();
     private string _saveLoadJson = "";
+    private string _importError = "";
+
     void ExportToJson()
     {
         _saveLoadJson = JsonSerializer.Serialize(_playerSheet, typeof(charSheet), Options);
@@ -30,7 +32,7 @@
             _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, Options);
         }
         catch (JsonException e) {
-            _importError = e.Message;
+            _importError = Exception.Message;
         }
     }
 }
