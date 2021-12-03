@@ -35,7 +35,7 @@
     void ImportFromJson()
     {
         try {
-            charSheet _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, options);
+            charSheet _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson);
         }
         catch (JsonException e) {
             _importError = e.Message;
