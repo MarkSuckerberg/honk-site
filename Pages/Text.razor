@@ -23,16 +23,16 @@
 
     void ExportToJson()
     {
-        _saveLoadJson = JsonSerializer.Serialize(_playerSheet, typeof(charSheet), Options);
+        _saveLoadJson = JsonSerializer.Serialize(_playerSheet, typeof(charSheet));
     }
 
     void ImportFromJson()
     {
         try {
-            _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, Options);
+            _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson);
         }
         catch (JsonException e) {
-            _importError = Exception.Message;
+            _importError = e.Message;
         }
     }
 }
