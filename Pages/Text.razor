@@ -39,7 +39,7 @@
             if(_inputSheet is null) { 
                 return; 
             }
-            _playerSheet = _inputSheet
+            _playerSheet = _inputSheet;
         }
         catch (JsonException e) {
             _importError = e.Message;
