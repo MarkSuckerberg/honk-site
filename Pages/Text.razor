@@ -17,19 +17,25 @@
 @_importError
 
 @code {
+    // General variable creation, the charSheet stuff is in the shared folder
+
     private charSheet _playerSheet = new();
     private string _saveLoadJson = "";
     private string _importError = "";
 
+    // creates the options field for the serializing
+
+    var options = new JsonSerializerOptions { WriteIndented = true };
+    
     void ExportToJson()
     {
-        _saveLoadJson = JsonSerializer.Serialize(_playerSheet, typeof(charSheet, default));
+        _saveLoadJson = JsonSerializer.Serialize(_playerSheet, typeof(charSheet, options));
     }
 
     void ImportFromJson()
     {
         try {
-            _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, default);
+            _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, options);
         }
         catch (JsonException e) {
             _importError = e.Message;
