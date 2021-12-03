@@ -25,7 +25,7 @@
 
     // creates the options field for the serializing
 
-    JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+    JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true, IncludeFields = true };
     
     void ExportToJson()
     {
@@ -35,7 +35,7 @@
     void ImportFromJson()
     {
         try {
-            _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, options);
+            _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, options!);
         }
         catch (JsonException e) {
             _importError = e.Message;
