@@ -35,11 +35,11 @@
     void ImportFromJson()
     {
         try {
-            charSheet? _inputSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, Options);
+            charSheet? _inputSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, options);
             if(_inputSheet is null) { 
                 return; 
             }
-            _playerSheet = input_sheet
+            _playerSheet = _inputSheet
         }
         catch (JsonException e) {
             _importError = e.Message;
