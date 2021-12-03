@@ -19,6 +19,7 @@
 
 @code {
     private charSheet _playerSheet = new();
+    private string _saveLoadJson = "";
     void ExportToJson()
     {
         _saveLoadJson = JsonSerializer.Serialize(_playerSheet, typeof(charSheet), Options);
