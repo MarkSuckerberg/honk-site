@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "honk-site": {
+    "honksite": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
