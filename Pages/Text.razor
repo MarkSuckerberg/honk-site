@@ -20,7 +20,7 @@
     // General variable creation, the charSheet stuff is in the shared folder
 
     private charSheet _playerSheet = new();
-    private string _saveLoadJson = "";
+    private string? _saveLoadJson = "";
     private string _importError = "";
 
     // creates the options field for the serializing
@@ -35,7 +35,11 @@
     void ImportFromJson()
     {
         try {
-            charSheet _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson);
+            charSheet? _inputSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, Options);
+            if(_inputSheet is null) { 
+                return; 
+            }
+            _playerSheet = input_sheet
         }
         catch (JsonException e) {
             _importError = e.Message;
