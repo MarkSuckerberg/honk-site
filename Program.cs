@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
 using honksite;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
