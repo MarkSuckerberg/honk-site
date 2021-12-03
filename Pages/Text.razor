@@ -23,13 +23,13 @@
 
     void ExportToJson()
     {
-        _saveLoadJson = JsonSerializer.Serialize(_playerSheet, typeof(charSheet));
+        _saveLoadJson = JsonSerializer.Serialize(_playerSheet, typeof(charSheet, default));
     }
 
     void ImportFromJson()
     {
         try {
-            _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson);
+            _playerSheet = JsonSerializer.Deserialize<charSheet>(_saveLoadJson, default);
         }
         catch (JsonException e) {
             _importError = e.Message;
